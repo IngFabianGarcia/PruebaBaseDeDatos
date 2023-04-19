@@ -18,20 +18,19 @@ public class conexion {
     public Connection Conectar(String user, String contra){
         try {
             DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
-            String nombre_servidor= "168.234.74.80";
+            String nombre_servidor= "127.0.0.1";
             String puerto = "1521";
-            String sid = "umg";
+            String sid = "xe";
             String url ="jdbc:oracle:thin:@"+nombre_servidor+":"+puerto+":"+sid;
-            String url_real="jdbc:oracle:thin:@:168.234.74.80:1521:umg";
             
-            conexion = DriverManager.getConnection(url_real,user,contra);
+            conexion = DriverManager.getConnection(url,user,contra);
                 
             JOptionPane.showMessageDialog(null, "Conexion Correcta");
             
             
         } catch (SQLException e) {
             System.out.println(e);
-            JOptionPane.showMessageDialog(null, "Conexion Correcta");
+            JOptionPane.showMessageDialog(null, "Conexion Incorrecta");
         }
         
         return conexion;
