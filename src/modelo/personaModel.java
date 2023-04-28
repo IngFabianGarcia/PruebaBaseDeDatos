@@ -2,6 +2,7 @@
 package modelo;
 
 import java.sql.*;
+import javax.swing.JOptionPane;
 import modelo.conexion;
 /**
  *
@@ -20,10 +21,11 @@ public class personaModel {
         this.telefono = telefono;
     }
     
+    public personaModel(){
+        
+    }
     
     
-    
-
     public String getApellidos() {
         return apellidos;
     }
@@ -48,8 +50,19 @@ public class personaModel {
         this.telefono = telefono;
     }
     
-    public void GuardarPersona(){
-        conexion nuevaConexion = new conexion();
-        this.myConexion= nuevaConexion.Conectar(nombre, nombre);
+    
+    public void GuardarPersona(String apellido, String nombre, int num)
+    {
+        try
+        {
+          conexion nuevaConexion = new conexion();
+          this.myConexion = nuevaConexion.Conectar(nombre, nombre);
+          Statement sentencia = myConexion.createStatement();
+          sentencia.execute("insert into PERSONAS values('"+this.getApellidos()+"', '"+this.getNombre()+"','"+this.getTelefono()+"')");
+        }
+        catch(SQLException e)
+        {
+         JOptionPane.showMessageDialog(null, "error al ingresar el registro..."+e.getMessage());   
+        }
     }
 }

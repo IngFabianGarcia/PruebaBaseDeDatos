@@ -1,7 +1,8 @@
-
 import controlador.conexionControlador;
 import modelo.conexion;
+import modelo.personaModel;
 import vista.frmLogin;
+import vista.frmPersonas;
 import vista.frmPrincipal;
 
 /*
@@ -24,8 +25,10 @@ public class main {
        
         frmPrincipal VistaPrincipal = new frmPrincipal();
         frmLogin VistaLogin = new frmLogin(VistaPrincipal, true);
+        frmPersonas vistaPersonas = new frmPersonas(VistaPrincipal, true);
+        personaModel modeloPersonas = new personaModel();
         conexion conexion = new conexion();
-        conexionControlador controlador = new conexionControlador(VistaLogin, VistaPrincipal, conexion);
+        conexionControlador controlador = new conexionControlador(VistaLogin, VistaPrincipal, vistaPersonas, modeloPersonas, conexion);
     }
     
 }
